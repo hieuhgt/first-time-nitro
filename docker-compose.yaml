@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  # maria-db:
+  #   container_name: maria-db
+  #   image: mariadb
+  #   restart: always
+  #   ports:
+  #     - '3306:3306'
+  #   environment:
+  #     MARIADB_ROOT_PASSWORD: 123456
+  #   volumes:
+  #     - ./data/mariadb:/var/lib/mysql
+
+  postgres:
+    container_name: first-time-nitro-postgres
+    image: postgres:15.2-alpine
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./data/postgres:/data/postgres
+    env_file:
+      - docker.env
+    networks:
+      - postgres
+
+networks:
+  postgres:
+    driver: bridge
